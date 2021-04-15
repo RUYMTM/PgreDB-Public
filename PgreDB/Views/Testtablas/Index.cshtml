@@ -1,0 +1,112 @@
+﻿@model List<PgreDB.Models.Testtabla>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Testtablas</h1>
+
+<form method="post" asp-controller="Testtablas" asp-action="Edit" onsubmit="disableEdit()">
+    <input type="button" value="Edit" class="btn btn-primary" onclick="enableEdit()" />
+    <input type="submit" value="Save" class="btn btn-primary" style="display: none;"/>
+    <a asp-action="Index" class="btnback" style="display: none" >Cancel</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    TesttablaId
+                </th>
+                <th>
+                    UsageDate
+                </th>
+                <th>
+                    Kibibytes
+                </th>
+                <th>
+                    DataDirection
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+
+                <tr>
+                    <td class="form-group" id="@i" >
+                        <input type="hidden" class="form-hidden-control" asp-for="@Model[i].TesttablaId" name="TesttablaId"/>
+                        <input asp-for="@Model[i].TesttablaId" class="noteditable" style="border:none;background-color:transparent;" disabled />
+                    </td>
+                    <td class="form-group" id="@i">
+                        <input asp-for="@Model[i].UsageDate" class="form-control" style="display: none;"  name="UsageDate"/>
+                        <input asp-for="@Model[i].UsageDate" class="view" style="border:none;background-color:transparent;" disabled />
+
+                    </td>
+                    <td class="form-group" id="@i">
+                        <input asp-for="@Model[i].Kibibytes" class="form-control" style="display: none;" name="Kibibytes"/>
+                        <input asp-for="@Model[i].Kibibytes" class="view" style="border:none;background-color:transparent;" disabled />
+                    </td>
+                    <td class="form-group" id="@i">
+                        <input asp-for="@Model[i].DataDirection" class="form-control" style="display: none;" name="DataDirection"/>
+                        <input asp-for="@Model[i].DataDirection" class="view" style="border:none;background-color:transparent;" disabled />
+                    </td>
+
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+
+</form>
+<script>
+function enableEdit() {
+    $(".form-control").show();
+    $(".btnback").show();
+    $(".view").hide();
+    $(":submit").show();
+    $(":button").hide();
+    $("input.form-control, input.form-hidden-control").prop('disabled', false);
+
+    }
+    function disableEdit() {
+        $("input.form-control, input.form-hidden-control").prop('disabled', true);
+        for (var i = 0; i <@Model.Count; i++) {
+            $('td.form-group[id="' + i + '"]').children('.form-control').each(function () {
+                var currentVal = $(this).val();
+                var originalVal = $(this).siblings().val();
+                if (currentVal != originalVal) {
+                    alert(currentVal + "   " + originalVal);
+                    $('td.form-group[id="' + i + '"]').children('.form-control, .form-hidden-control').each(function () {
+                        $(this).prop('disabled', false);
+                    });
+                }
+
+            });
+        }
+        var k = 0;
+        for (var i = 0; i <@Model.Count; i++) {
+            var inc = false;
+            $('td.form-group[id="' + i + '"]').children('.form-control, .form-hidden-control').each(function () {
+
+                if (!$(this).is(':disabled')) {
+                    $(this).attr('name', '[' + k + '].' + $(this).attr('name'));
+                    inc=true;
+                }
+
+            });
+            if (inc) {
+                k++;
+            }
+        }
+        
+        $("#form").submit();
+        $(".form-control").hide();
+        $(".btnback").hide();
+        $(".view").show();
+        $(":submit").hide();
+        $(":button").show();
+
+    }
+
+
+</script>

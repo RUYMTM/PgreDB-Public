@@ -1,0 +1,327 @@
+﻿@model List<PgreDB.Models.AllInfoWindParkV>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>AllInfoWindParkV</h1>
+@using (Html.BeginForm())
+{
+    <p>
+        Search: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+<form method="post" asp-controller="AllInfoWindParkVs" asp-action="Edit">
+    <input type="button" value="Edit" class="btn btn-primary" onclick="enableEdit()" />
+    <input type="submit" value="Save" class="btn btn-primary" style="display: none;" onclick="disableEdit()" />
+    <a asp-action="Index" class="btnback" style="display: none">Cancel</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink("PowerPlantId", "Index", new { sortOrder = ViewBag.PowerPlantIdSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("EwiserAzonosito", "Index", new { sortOrder = ViewBag.EwiserAzonositoSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("EromuNeve", "Index", new { sortOrder = ViewBag.EromuNeveSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("LocationCity", "Index", new { sortOrder = ViewBag.LocationCitySortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("LocationParcelNumber", "Index", new { sortOrder = ViewBag.LocationParcelNumberSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("MeteringPointIdentification", "Index", new { sortOrder = ViewBag.MeteringPointIdentificationSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("MkpSynced", "Index", new { sortOrder = ViewBag.MkpSyncedSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("HivatalosTulajCegnev", "Index", new { sortOrder = ViewBag.HivatalosTulajCegnevSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("SzamalazasCegnev", "Index", new { sortOrder = ViewBag.SzamalazasCegnevSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("UzemeltetoCegnev", "Index", new { sortOrder = ViewBag.UzemeltetoCegnevSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("KozvetitoCegnev", "Index", new { sortOrder = ViewBag.KozvetitoCegnevSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("Userek", "Index", new { sortOrder = ViewBag.UserekSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("Latitude", "Index", new { sortOrder = ViewBag.LatitudeSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("Longitude", "Index", new { sortOrder = ViewBag.LongitudeSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("RealProductionStartDate", "Index", new { sortOrder = ViewBag.RealProductionStartDateSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("RegistrationDate", "Index", new { sortOrder = ViewBag.RegistrationDateSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("KatContractStartDate", "Index", new { sortOrder = ViewBag.KatContractStartDateSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("PowerOutputWatt", "Index", new { sortOrder = ViewBag.PowerOutputWattSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("MekhId", "Index", new { sortOrder = ViewBag.MekhIdSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("ScheduleIdentificationGroupId", "Index", new { sortOrder = ViewBag.ScheduleIdentificationGroupIdSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("ScheduleIdentificationGroupPrevId", "Index", new { sortOrder = ViewBag.ScheduleIdentificationGroupPrevIdSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("ScheduleIdentificationGroupPrevDate", "Index", new { sortOrder = ViewBag.ScheduleIdentificationGroupPrevDateSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("MekSendersTimeSeriesIdentification", "Index", new { sortOrder = ViewBag.MekSendersTimeSeriesIdentificationSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("MekSendersTimeSeriesSequentialIdentification", "Index", new { sortOrder = ViewBag.MekSendersTimeSeriesSequentialIdentificationSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("ElozoCsoportFelhnev", "Index", new { sortOrder = ViewBag.ElozoCsoportFelhnevSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("ScheduleDestination", "Index", new { sortOrder = ViewBag.ScheduleDestinationSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("CsoportFelhnev", "Index", new { sortOrder = ViewBag.CsoportFelhnevSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("MekLastPasswordRenewingDate", "Index", new { sortOrder = ViewBag.MekLastPasswordRenewingDateSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("ActivePrediction", "Index", new { sortOrder = ViewBag.ActivePredictionSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("ActiveInverterMonitoring", "Index", new { sortOrder = ViewBag.ActiveInverterMonitoringSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("ActiveMekh", "Index", new { sortOrder = ViewBag.ActiveMekhSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("ActiveBilling", "Index", new { sortOrder = ViewBag.ActiveBillingSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("TotalBaseFee", "Index", new { sortOrder = ViewBag.TotalBaseFeeSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("TotalFeedInTariffFixFee", "Index", new { sortOrder = ViewBag.TotalFeedInTariffFixFeeSortParm })
+
+                </th>
+                <th>
+                    @Html.ActionLink("TotalSuccessFee", "Index", new { sortOrder = ViewBag.TotalSuccessFeeSortParm })
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+            <tr>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].PowerPlantId" />
+                    <span>@Model[i].PowerPlantId</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].EwiserAzonosito" />
+                    <span>@Model[i].EwiserAzonosito</span>
+                </td>
+                <td class="form-group">
+                    <input asp-for="@Model[i].EromuNeve" class="form-control" style="display: none;" />
+                    <span class="view">@Model[i].EromuNeve</span>
+                </td>
+                <td class="form-group">
+                    <input asp-for="@Model[i].LocationCity" class="form-control" style="display: none;" />
+                    <span class="view">@Model[i].LocationCity</span>
+                </td>
+                <td class="form-group">
+                    <input asp-for="@Model[i].LocationParcelNumber" class="form-control" style="display: none;" />
+                    <span class="view">@Model[i].LocationParcelNumber</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].MeteringPointIdentification" />
+                    <span>@Model[i].MeteringPointIdentification</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].MkpSynced" />
+                    <span>@Model[i].MkpSynced</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].HivatalosTulajCegnev" />
+                    <span>@Model[i].HivatalosTulajCegnev</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].SzamalazasCegnev" />
+                    <span>@Model[i].SzamalazasCegnev</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].UzemeltetoCegnev" />
+                    <span>@Model[i].UzemeltetoCegnev</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].KozvetitoCegnev" />
+                    <span>@Model[i].KozvetitoCegnev</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].Userek" />
+                    <span>@Model[i].Userek</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].Latitude" />
+                    <span>@Model[i].Latitude</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].Longitude" />
+                    <span>@Model[i].Longitude</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].RealProductionStartDate" />
+                    <span>@Model[i].RealProductionStartDate</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].RegistrationDate" />
+                    <span>@Model[i].RegistrationDate</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].KatContractStartDate" />
+                    <span>@Model[i].KatContractStartDate</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].PowerOutputWatt" />
+                    <span>@Model[i].PowerOutputWatt</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].MekhId" />
+                    <span>@Model[i].MekhId</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].ScheduleIdentificationGroupId" />
+                    <span>@Model[i].ScheduleIdentificationGroupId</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].ScheduleIdentificationGroupPrevId" />
+                    <span>@Model[i].ScheduleIdentificationGroupPrevId</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].ScheduleIdentificationGroupPrevDate" />
+                    <span>@Model[i].ScheduleIdentificationGroupPrevDate</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].MekSendersTimeSeriesIdentification" />
+                    <span>@Model[i].MekSendersTimeSeriesIdentification</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].MekSendersTimeSeriesSequentialIdentification" />
+                    <span>@Model[i].MekSendersTimeSeriesSequentialIdentification</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].ElozoCsoportFelhnev" />
+                    <span>@Model[i].ElozoCsoportFelhnev</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].ScheduleDestination" />
+                    <span>@Model[i].ScheduleDestination</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].CsoportFelhnev" />
+                    <span>@Model[i].CsoportFelhnev</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].MekLastPasswordRenewingDate" />
+                    <span>@Model[i].MekLastPasswordRenewingDate</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].ActivePrediction" />
+                    <span>@Model[i].ActivePrediction</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].ActiveInverterMonitoring" />
+                    <span>@Model[i].ActiveInverterMonitoring</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].ActiveMekh" />
+                    <span>@Model[i].ActiveMekh</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].ActiveBilling" />
+                    <span>@Model[i].ActiveBilling</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].TotalBaseFee" />
+                    <span>@Model[i].TotalBaseFee</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].TotalFeedInTariffFixFee" />
+                    <span>@Model[i].TotalFeedInTariffFixFee</span>
+                </td>
+                <td class="form-group">
+                    <input type="hidden" asp-for="@Model[i].TotalSuccessFee" />
+                    <span>@Model[i].TotalSuccessFee</span>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</form>
+<script>
+    function enableEdit() {
+        $(".form-control").show();
+        $(".btnback").show();
+        $(".view").hide();
+        $(":submit").show();
+        $(":button").hide();
+    }
+    function disableEdit() {
+        $(".form-control").hide();
+        $(".btnback").hide();
+        $(".view").show();
+        $(":submit").hide();
+        $(":button").show();
+    }</script>

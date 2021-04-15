@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PgreDB.Models.ScheduleIdentificationGroup>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>ScheduleIdentificationGroup</h1>
+@using (Html.BeginForm())
+{
+    <p>
+        Search: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("ScheduleIdentificationGroupId", "Index", new { sortOrder = ViewBag.IdSortParm })
+
+            </th>
+            <th>
+                @Html.ActionLink("MekSenderIdentification", "Index", new { sortOrder = ViewBag.MSISortParm })
+
+            </th>
+            <th>
+                @Html.ActionLink("MekUsername", "Index", new { sortOrder = ViewBag.MUSortParm })
+
+            </th>
+            <th>
+                @Html.ActionLink("MekPassword", "Index", new { sortOrder = ViewBag.MPSortParm })
+
+            </th>
+            <th>
+                @Html.ActionLink("MekLastPasswordRenewingDate", "Index", new { sortOrder = ViewBag.MLPRDSortParm })
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScheduleIdentificationGroupId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MekSenderIdentification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MekUsername)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MekPassword)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MekLastPasswordRenewingDate)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
